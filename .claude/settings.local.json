@@ -18,7 +18,8 @@
       "Bash(npx gh-pages:*)",
       "Bash(git commit -m \"$\\(cat <<''EOF''\nFix 1M timeframe and add .nojekyll for GitHub Pages\n\n- Changed 1M chart timeframe from 1H to 1D \\(Alpaca API limitation\\)\n- Added .nojekyll file for proper GitHub Pages asset serving\n- Updated deploy script to include dotfiles\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
       "Bash(git commit -m \"$\\(cat <<''EOF''\nSet 1D as default timeframe for portfolio chart\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
-      "Bash(git commit -m \"$\\(cat <<''EOF''\nImprove mobile UI and tab touch targets\n\n- Added bottom navigation bar for mobile \\(iOS-style\\)\n- Increased touch targets for tabs \\(min 40px height\\)\n- Added safe-area padding for iPhone notches\n- Improved table readability on small screens\n- Added theme-color and apple-mobile-web-app meta tags\n- Better card padding on mobile\n- Tabs now have hover states and press animations\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")"
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nImprove mobile UI and tab touch targets\n\n- Added bottom navigation bar for mobile \\(iOS-style\\)\n- Increased touch targets for tabs \\(min 40px height\\)\n- Added safe-area padding for iPhone notches\n- Improved table readability on small screens\n- Added theme-color and apple-mobile-web-app meta tags\n- Better card padding on mobile\n- Tabs now have hover states and press animations\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nAdd Starting Balance and All-Time P/L to dashboard\n\n- Shows the initial equity from account history\n- Calculates all-time profit/loss with percentage\n- Reorganized stats grid \\(5 cards\\)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")"
     ]
   }
 }

@@ -51,6 +51,26 @@ export const Overview = () => {
     [selectedTimeframe]
   );
 
+  // Fetch ALL history to get starting balance
+  const { data: allTimeHistory } = useApi(
+    () => getPortfolioHistory({ period: 'all', timeframe: '1D' }),
+    []
+  );
+
+  // Calculate starting balance and all-time P/L
+  const { startingBalance, allTimePL, allTimePLPercent } = useMemo(() => {
+    if (!allTimeHistory?.equity || allTimeHistory.equity.length === 0) {
+      return { startingBalance: 0, allTimePL: 0, allTimePLPercent: 0 };
+    }
+
+    const firstEquity = allTimeHistory.equity[0];
+    const currentEquity = allTimeHistory.equity[allTimeHistory.equity.length - 1];
+    const pl = currentEquity - firstEquity;
+    const plPercent = firstEquity > 0 ? (pl / firstEquity) * 100 : 0;
+
+    return { startingBalance: firstEquity, allTimePL: pl, allTimePLPercent: plPercent };
+  }, [allTimeHistory]);
+
   const chartData = useMemo(() => {
     if (!portfolioHistory?.timestamp || !portfolioHistory?.equity) return [];
 
@@ -101,16 +121,23 @@ export const Overview = () => {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
+        <StatCard
+          label="Starting Balance"
+          value={formatCurrency(startingBalance)}
+          icon="🏦"
+        />
         <StatCard
           label="Portfolio Value"
           value={formatCurrency(account?.equity)}
           icon="💰"
         />
         <StatCard
-          label="Buying Power"
-          value={formatCurrency(account?.buying_power)}
-          icon="⚡"
+          label="All-Time P/L"
+          value={formatCurrency(allTimePL)}
+          subValue={formatPercent(allTimePLPercent)}
+          trend={allTimePL}
+          icon="📊"
         />
         <StatCard
           label="Cash"
@@ -118,11 +145,9 @@ export const Overview = () => {
           icon="💵"
         />
         <StatCard
-          label="Unrealized P/L"
-          value={formatCurrency(totalUnrealizedPL)}
-          subValue={formatPercent(totalUnrealizedPLPercent)}
-          trend={totalUnrealizedPL}
-          icon="📈"
+          label="Buying Power"
+          value={formatCurrency(account?.buying_power)}
+          icon="⚡"
         />
       </div>
 
