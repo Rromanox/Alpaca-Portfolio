@@ -37,7 +37,7 @@ const CustomTooltip = ({ active, payload, label }) => {
 };
 
 export const Overview = () => {
-  const [selectedTimeframe, setSelectedTimeframe] = useState(TIMEFRAMES[2]); // 1M default
+  const [selectedTimeframe, setSelectedTimeframe] = useState(TIMEFRAMES[0]); // 1D default
 
   const { data: account, loading: accountLoading, error: accountError, execute: refetchAccount } = useApi(getAccount, []);
   const { data: positions, loading: positionsLoading } = useApi(getPositions, []);
