@@ -18,7 +18,7 @@ import { format, parseISO } from 'date-fns';
 const TIMEFRAMES = [
   { label: '1D', period: '1D', timeframe: '5Min' },
   { label: '1W', period: '1W', timeframe: '15Min' },
-  { label: '1M', period: '1M', timeframe: '1H' },
+  { label: '1M', period: '1M', timeframe: '1D' },
   { label: '3M', period: '3M', timeframe: '1D' },
   { label: '1Y', period: '1A', timeframe: '1D' },
   { label: 'ALL', period: 'all', timeframe: '1D' },
