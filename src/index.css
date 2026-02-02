@@ -27,6 +27,12 @@ body {
   background-color: var(--color-dark-900);
   color: #e5e7eb;
   min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* Safe area for iPhone notches */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 ::-webkit-scrollbar {
@@ -51,7 +57,13 @@ body {
   background-color: var(--color-dark-800);
   border: 1px solid var(--color-dark-600);
   border-radius: 12px;
-  padding: 1.5rem;
+  padding: 1rem;
+}
+
+@media (min-width: 640px) {
+  .card {
+    padding: 1.5rem;
+  }
 }
 
 .btn-primary {
@@ -81,8 +93,9 @@ body {
   padding: 0.75rem 1rem;
   color: #e5e7eb;
   width: 100%;
-  font-size: 0.95rem;
+  font-size: 1rem;
   transition: border-color 0.2s;
+  -webkit-appearance: none;
 }
 
 .input:focus {
@@ -92,6 +105,15 @@ body {
 
 .input::placeholder {
   color: #6b7280;
+}
+
+/* Better touch targets for mobile */
+select.input {
+  min-height: 48px;
+}
+
+input[type="date"].input {
+  min-height: 48px;
 }
 
 .profit {
@@ -104,6 +126,7 @@ body {
 
 .table-container {
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 table {
@@ -113,13 +136,21 @@ table {
 
 th {
   text-align: left;
-  padding: 0.75rem 1rem;
+  padding: 0.75rem 0.5rem;
   font-weight: 500;
   color: #9ca3af;
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   border-bottom: 1px solid var(--color-dark-600);
   cursor: pointer;
   user-select: none;
+  white-space: nowrap;
+}
+
+@media (min-width: 640px) {
+  th {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+  }
 }
 
 th:hover {
@@ -127,9 +158,16 @@ th:hover {
 }
 
 td {
-  padding: 0.75rem 1rem;
+  padding: 0.75rem 0.5rem;
   border-bottom: 1px solid var(--color-dark-700);
-  font-size: 0.95rem;
+  font-size: 0.8rem;
+}
+
+@media (min-width: 640px) {
+  td {
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+  }
 }
 
 tr:hover td {
@@ -151,23 +189,48 @@ tr:hover td {
   }
 }
 
+/* Improved tab/button styles for better touch targets */
 .tab {
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  font-size: 0.875rem;
-  font-weight: 500;
+  padding: 0.625rem 0.875rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
   color: #9ca3af;
   background: transparent;
   border: none;
   cursor: pointer;
   transition: all 0.2s;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .tab {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    min-height: 36px;
+  }
 }
 
 .tab:hover {
   color: #e5e7eb;
+  background-color: var(--color-dark-600);
+}
+
+.tab:active {
+  transform: scale(0.95);
 }
 
 .tab.active {
   background-color: var(--color-accent);
   color: white;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+/* Prevent text selection on buttons */
+button, .tab {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
